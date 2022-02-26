@@ -1,11 +1,19 @@
+import { useState } from 'react';
 import Image from 'next/image';
+/*import 'dotenv/config';*/
+require('dotenv').config()
 import styles from '../styles/chatHeader.module.css';
 import at from '../assets/icons/at.svg';
 import ethLogo from '../assets/eth.png'
 
+const testMetamaskAddress = process.env.METAMASK_ADDRESS;
+
 const ChatHeader = () => {
 
-    const currentAccount = true;
+    // const [currentAccount, setCurrentAccount] = useState(true);
+
+    const currentAccount = testMetamaskAddress;
+
     /* TODO(mark): implement connection to metamask */
     const connectWallet = () => {}
     return (
@@ -18,13 +26,14 @@ const ChatHeader = () => {
             {currentAccount ? (
                 <div className={styles.connectedWallet}>
                     <Image src={ethLogo} height={20} width={15} alt='ethLogo'/>
+                    <span className={styles.separator}>{'|'}</span>
+                    {currentAccount.slice(0,6)}...{currentAccount.slice(39)}
                 </div>
             ) : (
-                <div></div>
+                <div className={styles.connectWallet} onClick={() => connectWallet()}>
+                    Connect Wallet
+                </div>
             )}
-            <div className={styles.connectWallet} onClick={() => connectWallet()}>
-                Connect Wallet
-            </div>
         </div>
     )
 }
