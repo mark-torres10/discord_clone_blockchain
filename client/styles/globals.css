@@ -51,3 +51,13 @@ body {
   top: 2px;
   left: 2px;
 }
+
+input[type='search'] {
+  border: none;
+  outline: none;
+  width: 100%;
+  background: #202225;
+  padding: 7px;
+  border-radius: 5px;
+  color: #fff;
+}
