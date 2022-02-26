@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import friends from '../assets/icons/friends.svg';
 import nitro from '../assets/icons/nitro.svg';
-
+import DmCard from './DmCard';
 
 const dummyConversations = [
     {
@@ -60,7 +60,16 @@ const ConversationList = () => {
                 </div>
                 <div className={styles.dmTitle}>DIRECT MESSAGES</div>
                 {dms.map((dm, index) => (
-                    <div>DM here </div>
+                    <DmCard
+                        key={index}
+                        name={dm.name}
+                        id={dm.id}
+                        avatar={
+                            dm.avatar || 
+                            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3OCSMFI'
+                        }
+                        status='online'
+                    />
                 ))}
             </div>
         </div>
