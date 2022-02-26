@@ -8,7 +8,7 @@ export default function Home() {
     <Sidebar /> 
     <div className={styles.main}>
       {/* conversationList */}
-      conversations
+      <p>Conversation List</p>
       {/* chat view */}
     </div>
   </div>
