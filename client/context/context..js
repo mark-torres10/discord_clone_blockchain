@@ -1,8 +1,8 @@
 import { createContext, useState, useEffect, useReducer } from 'react';
 import { useRouter } from 'next/router';
 import Gun from 'gun';
-
 import 'dotenv/config';
+
 const graphNodeAppPath = process.env.HEROKU_NODE_APP_PATH;
 
 export const DiscordContext = createContext();
@@ -37,8 +37,42 @@ export const DiscordProvider = ({ children }) => {
         checkIfWalletIsConnected()
     }, [])
 
+    // create user account by logging into metamask
     const createUserAccount = async() => {
-        // if no account, create user account
+        if (!window.ethereum) return;
+
+        try {
+            const data = {
+                userAddress: userAddress,
+            }
+
+            try {
+                await fetch(`${process.env.NEXT_PUBLIC_API_URL}/createuser`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                })
+            } catch (error) {
+                console.error(error);
+            }
+
+            try {
+                await fetch(`${process.env.NEXT_PUBLIC_API_URL}/createdm`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                })
+            } catch (error) {
+                console.error(error);
+            }
+
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     // handle connections with metamask wallet
