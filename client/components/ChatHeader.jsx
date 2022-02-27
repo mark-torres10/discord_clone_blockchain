@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import Image from 'next/image';
-/*import 'dotenv/config';*/
-require('dotenv').config()
+import 'dotenv/config';
 import styles from '../styles/chatHeader.module.css';
 import at from '../assets/icons/at.svg';
 import help from '../assets/icons/help.svg';
