@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import Image from 'next/image';
 import 'dotenv/config';
 import styles from '../styles/chatHeader.module.css';
@@ -9,16 +9,13 @@ import personPlus from '../assets/icons/person-plus.svg';
 import phone from '../assets/icons/phone.svg';
 import pin from '../assets/icons/pin.svg';
 import video from '../assets/icons/video.svg';
-import ethLogo from '../assets/eth.png'
+import ethLogo from '../assets/eth.png';
+import { DiscordContext } from '../context/context';
 
 const testMetamaskAddress = process.env.METAMASK_ADDRESS;
 
 const ChatHeader = () => {
-    const [currentAccount, setCurrentAccount] = useState(testMetamaskAddress);
-
-    /* TODO(mark): implement connection to metamask */
-    const connectWallet = () => {}
-
+    const { roomName, currentAccount, connectWallet } = useContext(DiscordContext); 
     return (
         <div className={styles.chatHeader}>
             <div className={styles.roomNameContainer}>
